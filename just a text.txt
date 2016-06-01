@@ -1,0 +1,25 @@
+reset;
+
+model;
+
+param n := 100;
+
+set S := 1..n;
+
+var x{S};
+
+minimize obj: sum {i in S} (x[i]-i)^2;		#function
+
+#s.t. con: sum {i in S} x[i] = n;	#con is constraints
+
+s.t. icon {i in S}: x[i] >= n+1-i;
+
+#data;
+
+#set S := john bob;
+
+option solver vtest;
+
+solve;
+
+display x;x
